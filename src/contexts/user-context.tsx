@@ -6,7 +6,7 @@ import { api } from '@/lib/axios'
 interface User {
   id: number
   name: string
-  email: string
+  email: stringwe
   phone: string
   password: string
 }
