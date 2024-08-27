@@ -50,6 +50,11 @@ para rodar a api rode no console:
  npm run json-server 
  ```
 
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+
 
 
 
