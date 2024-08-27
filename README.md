@@ -1,6 +1,6 @@
 # Plataforma de Cursos de React
 
-Este é um projeto de uma plataforma de cursos de React, desenvolvido com Vite, React, TypeScript, Shadcn UI e JSON Server para simular a API.
+Este é um projeto frontend de uma plataforma de cursos de React, desenvolvido com Vite, React, TypeScript, Shadcn UI e JSON Server para simular a API.
 
 ## Índice
 
