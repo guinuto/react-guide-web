@@ -53,8 +53,8 @@ export function UserModal({ user }: UserModalProps) {
   const [inputPhoneValue, setInputPhoneValue] = useState(user.phone)
   const [updateAuthorization, setUpdateAuthorization] = useState(false)
 
-  function handleUpdateUser(data: ModalUserFormData) {
-    userUpdate(data, user.id).then(() => {
+  async function handleUpdateUser(data: ModalUserFormData) {
+    await userUpdate(data, user.id).then(() => {
       setOpen(false)
     })
   }
@@ -126,7 +126,7 @@ export function UserModal({ user }: UserModalProps) {
                 onCheckedChange={handleChangeSwitch}
               />
               <Button type="submit" disabled={isSubmitting}>
-                Atualizar usuário
+                {isSubmitting ? 'Atualizando informações' : 'Atualizar usuário'}
               </Button>
             </div>
           </form>

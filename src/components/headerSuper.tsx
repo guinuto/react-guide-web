@@ -1,7 +1,7 @@
 import { Atom } from 'lucide-react'
 
-import { AccountMenu } from './account-menu'
 import { NavLink } from './nav-link'
+import { SuperUserMenu } from './superUser-menu'
 import { ThemeToggle } from './theme/theme-toogle'
 
 export function SuperHeader() {
@@ -15,7 +15,7 @@ export function SuperHeader() {
         <NavLink to="/">Dashboard</NavLink>
       </nav>
       <div className="ml-auto flex items-center space-x-4">
-        <AccountMenu />
+        <SuperUserMenu />
         <ThemeToggle />
       </div>
     </header>

@@ -14,12 +14,12 @@ export function Login() {
           <h1 className="text-2xl font-semibold">React-guide</h1>
         </div>
         <div className="flex items-center gap-2">
-          {pathname === '/sign-in' ? (
+          {pathname === '/' ? (
             <Link to="/sign-up">
               <Button>Cadastrar</Button>
             </Link>
           ) : pathname === '/sign-up' ? (
-            <Link to="/sign-in">
+            <Link to="/">
               <Button>Login</Button>
             </Link>
           ) : (

@@ -15,15 +15,19 @@ const SearchFormSchema = z.object({
 type SearchFormData = z.infer<typeof SearchFormSchema>
 
 export function SearchUsers() {
-  const { register, handleSubmit } = useForm<SearchFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SearchFormData>({
     resolver: zodResolver(SearchFormSchema),
   })
 
   const { fetchUsers } = useContext(UserContext)
 
-  function handleSearchUser(data: SearchFormData) {
+  async function handleSearchUser(data: SearchFormData) {
     const { query } = data
-    fetchUsers(query)
+    await fetchUsers(query)
   }
   return (
     <form className="flex gap-4" onSubmit={handleSubmit(handleSearchUser)}>
@@ -32,7 +36,7 @@ export function SearchUsers() {
         placeholder="Digite oque procura"
         {...register('query')}
       />
-      <Button type="submit">
+      <Button disabled={isSubmitting} type="submit">
         <Search />
       </Button>
     </form>

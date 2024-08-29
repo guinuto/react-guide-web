@@ -35,7 +35,9 @@ interface UserContextType {
   userLogin: (data: UserLoginData) => Promise<void>
   userSignUp: (data: UserSignUpData) => Promise<void>
   userUpdate: (data: UserUpdateData, id: number) => Promise<void>
+  userUpdatePassword: (password: string, id: number) => Promise<void>
   deleteUser: (id: number) => Promise<void>
+  setActiveUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 interface UserProviderProps {
@@ -98,11 +100,16 @@ export function UserContextProvider({ children }: UserProviderProps) {
 
   async function userUpdate(data: UserUpdateData, id: number) {
     const { name, email, phone } = data
+
+    const password = activeUser
+      ? activeUser.password
+      : users.find((user) => user.id === id)!.password
     try {
       const response = await api.put(`/users/${id}`, {
         name,
         email,
         phone,
+        password,
       })
       toast.success('Usuário atualizado com sucesso!')
       setUsers((state) =>
@@ -110,8 +117,35 @@ export function UserContextProvider({ children }: UserProviderProps) {
           user.id === id ? { ...user, ...response.data } : user,
         ),
       )
+      if (activeUser != null) {
+        setActiveUser((state) => ({ ...state, ...response.data }))
+      }
     } catch (error) {
       toast.error('Erro em atualizar usuário')
+    }
+  }
+
+  async function userUpdatePassword(password: string, id: number) {
+    const name = activeUser?.name
+    const email = activeUser?.email
+    const phone = activeUser?.phone
+    try {
+      const response = await api.put(`/users/${id}`, {
+        name,
+        email,
+        phone,
+        password,
+      })
+      toast.success('Senha do usuário atualizado com sucesso!')
+      setUsers((state) =>
+        state.map((user) =>
+          user.id === id ? { ...user, ...response.data } : user,
+        ),
+      )
+
+      setActiveUser((state) => ({ ...state, ...response.data }))
+    } catch (error) {
+      toast.error('Erro em atualizar senha')
     }
   }
 
@@ -134,7 +168,9 @@ export function UserContextProvider({ children }: UserProviderProps) {
         userLogin,
         userSignUp,
         userUpdate,
+        userUpdatePassword,
         deleteUser,
+        setActiveUser,
       }}
     >
       {children}

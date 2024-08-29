@@ -21,7 +21,7 @@ export function SignInSuper() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignInSuperFormData>({
     resolver: zodResolver(SignInSuperFormSchema),
   })
@@ -30,8 +30,8 @@ export function SignInSuper() {
 
   const navigate = useNavigate()
 
-  function signInSubmit(data: SignInSuperFormData) {
-    superUserLogin(data)
+  async function signInSubmit(data: SignInSuperFormData) {
+    await superUserLogin(data)
       .then(() => {
         navigate('/dashboard')
       })
@@ -49,7 +49,7 @@ export function SignInSuper() {
               Administre os alunos do curso
             </span>
           </div>
-          <Link to="/sign-in">
+          <Link to="/">
             <CornerDownLeft className="h-6 w-6" />
           </Link>
         </div>
@@ -76,7 +76,9 @@ export function SignInSuper() {
               <p className="text-sm text-red-500">{errors.password.message}</p>
             )}
           </div>
-          <Button type="submit">Entrar</Button>
+          <Button disabled={isSubmitting} type="submit">
+            {isSubmitting ? 'Entrando...' : 'Entrar'}
+          </Button>
         </form>
       </div>
     </div>

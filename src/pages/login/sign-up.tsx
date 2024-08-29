@@ -28,10 +28,10 @@ export function SignUp() {
   const navigate = useNavigate()
   const { userSignUp } = useContext(UserContext)
 
-  function signUpSubmit(data: SignUpFormData) {
-    userSignUp(data)
+  async function signUpSubmit(data: SignUpFormData) {
+    await userSignUp(data)
       .then(() => {
-        navigate('/sign-in')
+        navigate('/')
       })
       .catch((error) => {
         console.error('Erro ao fazer cadastro:', error)
@@ -41,7 +41,7 @@ export function SignUp() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(SignUpFormSchema),
   })
@@ -91,7 +91,7 @@ export function SignUp() {
               <p className="text-sm text-red-500">A senha é obrigatória</p>
             )}
           </div>
-          <Button type="submit" className="w-full">
+          <Button disabled={isSubmitting} type="submit" className="w-full">
             Finalizar cadastro
           </Button>
 
