@@ -1,24 +1,6 @@
 {
   "Users": [
     {
-      "name": "Guilherme Evanegelista Ferreira dos Santos",
-      "email": "guiguievangelista@18gmail.com",
-      "phone": "61999985633",
-      "id": 1
-    },
-    {
-      "name": "Isadora Evangelista Ferreira dos Santox",
-      "email": "isaevan16@gmail.com",
-      "phone": "61999985633",
-      "id": 2
-    },
-    {
-      "name": "Henrique Basílio Alarcãum",
-      "email": "bota@gmail.com",
-      "phone": "61999985633",
-      "id": 3
-    },
-    {
       "name": "Cristiane Evangelista Ferreira dos Santos",
       "email": "cristialista@gmail.com",
       "password": "Isa35327852",
@@ -38,6 +20,20 @@
       "password": "12345",
       "phone": "5561999985633",
       "id": 7
+    },
+    {
+      "name": "Isadora Santos",
+      "email": "isaevan16@gmail.com",
+      "password": "124124124",
+      "phone": "5561999985633",
+      "id": 9
+    },
+    {
+      "name": "Guilherme Evangelista Ferreira dos Santos",
+      "email": "guiguievangelista18@gmail.com",
+      "phone": "5561999985633",
+      "password": "124124124",
+      "id": 10
     }
   ],
   "SuperUsers": [

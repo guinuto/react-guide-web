@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { z } from 'zod'
@@ -20,24 +20,29 @@ export function SignIn() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignInFormData>({
     resolver: zodResolver(SignInFormSchema),
   })
 
-  const { userLogin } = useContext(UserContext)
+  const { userLogin, activeUser } = useContext(UserContext)
 
   const navigate = useNavigate()
 
-  function signInSubmit(data: SignInFormData) {
-    userLogin(data)
+  async function signInSubmit(data: SignInFormData) {
+    await userLogin(data)
       .then(() => {
-        navigate('/')
+        navigate('/home')
       })
       .catch((error) => {
         console.error('Erro ao fazer login:', error)
       })
   }
+
+  useEffect(() => {
+    console.log(activeUser)
+  }, [activeUser])
+
   return (
     <div className="flex flex-col gap-24 p-8">
       <div className="m-auto flex w-1/3 flex-col justify-center gap-4 rounded-lg border p-4">
@@ -68,7 +73,9 @@ export function SignIn() {
               <p className="text-sm text-red-500">{errors.password.message}</p>
             )}
           </div>
-          <Button type="submit">Entrar</Button>
+          <Button disabled={isSubmitting} type="submit">
+            {isSubmitting ? 'Entrando...' : 'Entrar'}
+          </Button>
           <span className="text-sm text-muted-foreground">
             Não tem cadastro ? Faça{' '}
             <Link to="/sign-up" className="font-semibold">

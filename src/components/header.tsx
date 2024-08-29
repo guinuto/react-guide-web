@@ -12,11 +12,11 @@ export function Header() {
         <h1 className="font-semibold">React-guide</h1>
       </div>
       <nav className="flex items-center space-x-4 lg:space-x-6">
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/home">Home</NavLink>
         <NavLink to="/introduction">Getting Started</NavLink>
         <NavLink to="/styles">Styles</NavLink>
         <NavLink to="/hooks">React Hooks</NavLink>
-        <NavLink to="/hooks">Shadcn/ui</NavLink>
+        <NavLink to="/concepts">Concepts</NavLink>
       </nav>
       <div className="ml-auto flex items-center space-x-4">
         <AccountMenu />
